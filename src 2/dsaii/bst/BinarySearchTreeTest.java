@@ -53,7 +53,7 @@ public class BinarySearchTreeTest {
      */
     public static void testInsertion() {
         BinarySearchTree<Integer> tree = basicTree();
-        if (tree.size() != 5) {
+        if (tree.size() != 9) {
             System.out.println("testInsertion(): FAILURE");
             System.out.println("Expected tree to contain 5 values, but it contains: "+ tree.size());
         } else {
