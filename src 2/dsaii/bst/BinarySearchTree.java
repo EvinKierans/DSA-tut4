@@ -51,6 +51,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     protected Position<T> locate(Position<T> current, T value) {
+
+        if(tree.isExternal(current)) {
+            return current;
+        }
+
+        if(current.element() == value) {
+            return current;
+        } else if(current.element().compareTo(value) < 0) {
+            return locate(tree.left(current), value);
+        } else if(current.element().compareTo(value) > 0) {
+            return locate(tree.right(current), value);
+        }
+
         return null;
     }
 
