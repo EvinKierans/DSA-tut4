@@ -8,13 +8,37 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
         Node<T> b = toNode(_b);
         Node<T> a = toNode(_a);
 
-        b.right = c;
-        b.left = a;
-        b.parent = null;
-        a.parent = b;
-        c.parent = b;
-        c.left = null;
-        this.root = b;
+        if(c == root) {
+            root = b;
+            Node<T> tmp = b.right;
+
+            b.right = c;
+            c.parent = b;
+
+            c.left = tmp;
+        } else {
+            if(c.parent.left.equals(c)) {
+                c.parent.left = b;
+            } else {
+                c.parent.right = b;
+            }
+
+            Node<T> tmp = b.right;
+
+            b.right = c;
+            c.right =b;
+
+            c.left = tmp;
+        }
+
+//        Previous Implementation
+//        this.root = b;
+//        b.right = c;
+//        c.parent = b;
+//        c.left = null;
+//        b.left = a;
+//        b.parent = null;
+//        a.parent = b;
 
         return b;
     }
@@ -24,13 +48,37 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
         Node<T> b = toNode(_b);
         Node<T> a = toNode(_a);
 
-        b.right = c;
-        b.left = a;
-        b.parent = null;
-        a.parent = b;
-        c.parent = b;
-        a.right = null;
-        this.root = b;
+        if(c == root) {
+            root = b;
+            Node<T> tmp = b.right;
+
+            b.right = c;
+            c.parent = b;
+
+            c.left = tmp;
+        } else {
+            if(c.parent.left.equals(c)) {
+                c.parent.left = b;
+            } else {
+                c.parent.right = b;
+            }
+
+            Node<T> tmp = b.right;
+
+            b.right = c;
+            c.right =b;
+
+            c.left = tmp;
+        }
+
+//        Previous Implementation
+//        b.right = c;
+//        b.left = a;
+//        b.parent = null;
+//        a.parent = b;
+//        c.parent = b;
+//        a.right = null;
+//        this.root = b;
 
         return b;
     }
@@ -41,14 +89,38 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
         Node<T> b = toNode(_b);
         Node<T> a = toNode(_a);
 
-        b.right = c;
-        b.left = a;
-        a.parent = b;
-        c.parent = b;
-        b.parent = null;
-        a.right = null;
-        c.left = null;
-        this.root = b;
+        if(c == root) {
+            root = b;
+            Node<T> tmp = b.right;
+
+            b.right = c;
+            c.parent = b;
+
+            c.left = tmp;
+        } else {
+            if(c.parent.left.equals(c)) {
+                c.parent.left = b;
+            } else {
+                c.parent.right = b;
+            }
+
+            Node<T> tmp = b.right;
+
+            b.right = c;
+            c.right =b;
+
+            c.left = tmp;
+        }
+
+//        Previous Implementation
+//        b.right = c;
+//        b.left = a;
+//        a.parent = b;
+//        c.parent = b;
+//        b.parent = null;
+//        a.right = null;
+//        c.left = null;
+//        this.root = b;
 
         return b;
     }
@@ -58,14 +130,38 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
         Node<T> b = toNode(_b);
         Node<T> a = toNode(_a);
 
-        b.parent = null;
-        a.right = null;
-        c.left = null;
-        a.parent = b;
-        c.parent = b;
-        b.right = c;
-        b.left = a;
-        this.root = b;
+        if(c == root) {
+            root = b;
+            Node<T> tmp = b.right;
+
+            b.right = c;
+            c.parent = b;
+
+            c.left = tmp;
+        } else {
+            if(c.parent.left.equals(c)) {
+                c.parent.left = b;
+            } else {
+                c.parent.right = b;
+            }
+
+            Node<T> tmp = b.right;
+
+            b.right = c;
+            c.right =b;
+
+            c.left = tmp;
+        }
+
+//        Previous Implementation
+//        b.parent = null;
+//        a.right = null;
+//        c.left = null;
+//        a.parent = b;
+//        c.parent = b;
+//        b.right = c;
+//        b.left = a;
+//        this.root = b;
 
         return b;
     }

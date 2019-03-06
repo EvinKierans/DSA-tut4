@@ -105,7 +105,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             rebalance(tree.parent(position));
     }
 
-    //swapped true and false returns
+    //swapped (false then true) to (true then false) returns
     private boolean recalculateHeights(Position<T> position) {
         int height = Math.max(heights.get(tree.left(position)), heights.get(tree.right(position)))+1;
         if (heights.get(position) == height) return true;
