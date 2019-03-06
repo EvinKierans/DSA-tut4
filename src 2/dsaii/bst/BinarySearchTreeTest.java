@@ -51,6 +51,7 @@ public class BinarySearchTreeTest {
     /**
      * tests that calling the push() method on a stack puts the item into the stack
      */
+    //changed tree.size() != 9
     public static void testInsertion() {
         BinarySearchTree<Integer> tree = basicTree();
         if (tree.size() != 9) {
