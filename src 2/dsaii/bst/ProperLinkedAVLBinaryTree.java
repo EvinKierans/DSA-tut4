@@ -1,35 +1,56 @@
 package dsaii.bst;
 
 import dsaii.common.Position;
+import jdk.internal.dynalink.linker.LinkerServices;
 
 public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
     public Position<T> singleLeft(Position<T> _a, Position<T> _b, Position<T> _c) {
-        Node<T> c = toNode(_c);
-        Node<T> b = toNode(_b);
-        Node<T> a = toNode(_a);
+        Node<T> z = toNode(_c);
+        Node<T> y = toNode(_b);
+        Node<T> x = toNode(_a);
 
-        if(c == root) {
-            root = b;
-            Node<T> tmp = b.right;
+//        New new implementation
+        y = x.right;
+        x.right = y.left;
 
-            b.right = c;
-            c.parent = b;
-
-            c.left = tmp;
-        } else {
-            if(c.parent.left.equals(c)) {
-                c.parent.left = b;
-            } else {
-                c.parent.right = b;
-            }
-
-            Node<T> tmp = b.right;
-
-            b.right = c;
-            c.right =b;
-
-            c.left = tmp;
+        if(y.left == z) {
+            y.left.parent = x;
         }
+        y.parent = x.parent;
+
+        if(x.parent == null) {
+            this.root = y;
+        } else if( x == x.parent.left) {
+            x.parent.left = y;
+        } else {
+            x.parent.right = y;
+        }
+        y.left = x;
+        x.parent = y;
+
+//        Thomas Implementation
+//        if(c == root) {
+//            root = b;
+//            Node<T> tmp = b.right;
+//
+//            b.right = c;
+//            c.parent = b;
+//
+//            c.left = tmp;
+//        } else {
+//            if(c.parent.left.equals(c)) {
+//                c.parent.left = b;
+//            } else {
+//                c.parent.right = b;
+//            }
+//
+//            Node<T> tmp = b.right;
+//
+//            b.right = c;
+//            c.right =b;
+//
+//            c.left = tmp;
+//        }
 
 //        Previous Implementation
 //        this.root = b;
@@ -40,36 +61,32 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
 //        b.parent = null;
 //        a.parent = b;
 
-        return b;
+        return y;
     }
 
     public Position<T> singleRight(Position<T> _a, Position<T> _b, Position<T> _c) {
-        Node<T> c = toNode(_c);
-        Node<T> b = toNode(_b);
-        Node<T> a = toNode(_a);
+        Node<T> z = toNode(_c);
+        Node<T> y = toNode(_b);
+        Node<T> x = toNode(_a);
 
-        if(c == root) {
-            root = b;
-            Node<T> tmp = b.right;
+//        New new Implementation
+        y = x.left;
+        x.left = y.right;
 
-            b.right = c;
-            c.parent = b;
-
-            c.left = tmp;
-        } else {
-            if(c.parent.left.equals(c)) {
-                c.parent.left = b;
-            } else {
-                c.parent.right = b;
-            }
-
-            Node<T> tmp = b.right;
-
-            b.right = c;
-            c.right =b;
-
-            c.left = tmp;
+        if(y.right == z) {
+            y.right.parent = x;
         }
+        y.parent = x.parent;
+
+        if(x.parent == null) {
+            this.root = y;
+        } else if( x == x.parent.right) {
+            x.parent.right = y;
+        } else {
+            x.parent.left = y;
+        }
+        y.right = x;
+        x.parent = y;
 
 //        Previous Implementation
 //        b.right = c;
@@ -80,37 +97,16 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
 //        a.right = null;
 //        this.root = b;
 
-        return b;
+        return y;
     }
 
     //added underscores because needed
     public Position<T> doubleLeftRight(Position<T> _a, Position<T> _b, Position<T> _c) {
-        Node<T> c = toNode(_c);
-        Node<T> b = toNode(_b);
-        Node<T> a = toNode(_a);
+        Node<T> z = toNode(_c);
+        Node<T> y = toNode(_b);
+        Node<T> x = toNode(_a);
 
-        if(c == root) {
-            root = b;
-            Node<T> tmp = b.right;
-
-            b.right = c;
-            c.parent = b;
-
-            c.left = tmp;
-        } else {
-            if(c.parent.left.equals(c)) {
-                c.parent.left = b;
-            } else {
-                c.parent.right = b;
-            }
-
-            Node<T> tmp = b.right;
-
-            b.right = c;
-            c.right =b;
-
-            c.left = tmp;
-        }
+//        New new Implementation
 
 //        Previous Implementation
 //        b.right = c;
@@ -122,36 +118,15 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
 //        c.left = null;
 //        this.root = b;
 
-        return b;
+        return y;
     }
 
     public Position<T> doubleRightLeft(Position<T> _a, Position<T> _b, Position<T> _c) {
-        Node<T> c = toNode(_c);
-        Node<T> b = toNode(_b);
-        Node<T> a = toNode(_a);
+        Node<T> z = toNode(_c);
+        Node<T> y = toNode(_b);
+        Node<T> x = toNode(_a);
 
-        if(c == root) {
-            root = b;
-            Node<T> tmp = b.right;
-
-            b.right = c;
-            c.parent = b;
-
-            c.left = tmp;
-        } else {
-            if(c.parent.left.equals(c)) {
-                c.parent.left = b;
-            } else {
-                c.parent.right = b;
-            }
-
-            Node<T> tmp = b.right;
-
-            b.right = c;
-            c.right =b;
-
-            c.left = tmp;
-        }
+//        New new Implementation
 
 //        Previous Implementation
 //        b.parent = null;
@@ -163,6 +138,6 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
 //        b.left = a;
 //        this.root = b;
 
-        return b;
+        return y;
     }
 }

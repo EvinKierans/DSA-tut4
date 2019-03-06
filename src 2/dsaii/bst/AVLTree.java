@@ -92,7 +92,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             } else if (xy == Direction.LEFT && yz == Direction.RIGHT) {
                 position = ((ProperLinkedAVLBinaryTree) tree).doubleLeftRight(z, x, y);
             } else { // Must be RIGHT/LEFT
-                position = ((ProperLinkedAVLBinaryTree) tree).doubleRightLeft(y, x, z);
+               position = ((ProperLinkedAVLBinaryTree) tree).doubleRightLeft(y, x, z);
             }
 
             // Recalculate the heights of the children of the restructured tree.
@@ -105,12 +105,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             rebalance(tree.parent(position));
     }
 
-    //swapped (false then true) to (true then false) returns
     private boolean recalculateHeights(Position<T> position) {
         int height = Math.max(heights.get(tree.left(position)), heights.get(tree.right(position)))+1;
-        if (heights.get(position) == height) return true;
+        if (heights.get(position) == height) return false;
         heights.put(position, height);
-        return false;
+        return true;
     }
 
     private void generateView(Position<T> position, StringBuffer buf, String offset) {
