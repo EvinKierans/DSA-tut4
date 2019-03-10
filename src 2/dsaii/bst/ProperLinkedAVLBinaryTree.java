@@ -5,54 +5,11 @@ import jdk.internal.dynalink.linker.LinkerServices;
 
 public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
     public Position<T> singleLeft(Position<T> _a, Position<T> _b, Position<T> _c) {
-        Node<T> z = toNode(_c);
-        Node<T> y = toNode(_b);
-        Node<T> x = toNode(_a);
+        Node<T> c = toNode(_c);
+        Node<T> b = toNode(_b);
+        Node<T> a = toNode(_a);
 
-//        New new implementation
-        y = x.right;
-        x.right = y.left;
-
-        if(y.left == z) {
-            y.left.parent = x;
-        }
-        y.parent = x.parent;
-
-        if(x.parent == null) {
-            this.root = y;
-        } else if( x == x.parent.left) {
-            x.parent.left = y;
-        } else {
-            x.parent.right = y;
-        }
-        y.left = x;
-        x.parent = y;
-
-//        Thomas Implementation
-//        if(c == root) {
-//            root = b;
-//            Node<T> tmp = b.right;
-//
-//            b.right = c;
-//            c.parent = b;
-//
-//            c.left = tmp;
-//        } else {
-//            if(c.parent.left.equals(c)) {
-//                c.parent.left = b;
-//            } else {
-//                c.parent.right = b;
-//            }
-//
-//            Node<T> tmp = b.right;
-//
-//            b.right = c;
-//            c.right =b;
-//
-//            c.left = tmp;
-//        }
-
-//        Previous Implementation
+        //Simple Implementation - logic is correct in how it rotates for this case
 //        this.root = b;
 //        b.right = c;
 //        c.parent = b;
@@ -61,34 +18,35 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
 //        b.parent = null;
 //        a.parent = b;
 
-        return y;
+        //Other Implementation - made directly from pseudo code from my notes
+        b = a.right;
+        a.right = b.left;
+
+        if(b.left == c) {
+            b.left.parent = a;
+        }
+        b.parent = a.parent;
+
+        if(a.parent == null) {
+            this.root = b;
+        } else if( a == a.parent.left) {
+            a.parent.left = b;
+        } else {
+            a.parent.right = b;
+        }
+        b.left = a;
+        a.parent = b;
+
+        return b;
+
     }
 
     public Position<T> singleRight(Position<T> _a, Position<T> _b, Position<T> _c) {
-        Node<T> z = toNode(_c);
-        Node<T> y = toNode(_b);
-        Node<T> x = toNode(_a);
+        Node<T> c = toNode(_c);
+        Node<T> b = toNode(_b);
+        Node<T> a = toNode(_a);
 
-//        New new Implementation
-        y = x.left;
-        x.left = y.right;
-
-        if(y.right == z) {
-            y.right.parent = x;
-        }
-        y.parent = x.parent;
-
-        if(x.parent == null) {
-            this.root = y;
-        } else if( x == x.parent.right) {
-            x.parent.right = y;
-        } else {
-            x.parent.left = y;
-        }
-        y.right = x;
-        x.parent = y;
-
-//        Previous Implementation
+        //Simple Implementation - logic is correct in how it rotates for this case
 //        b.right = c;
 //        b.left = a;
 //        b.parent = null;
@@ -97,47 +55,62 @@ public class ProperLinkedAVLBinaryTree<T> extends ProperLinkedBSTBinaryTree<T> {
 //        a.right = null;
 //        this.root = b;
 
-        return y;
+        //Other Implementation - made directly from pseudo code from my notes
+        b = a.left;
+        a.left = b.right;
+
+        if(b.right == c) {
+            b.right.parent = a;
+        }
+        b.parent = a.parent;
+
+        if(a.parent == null) {
+            this.root = b;
+        } else if( a == a.parent.right) {
+            a.parent.right = b;
+        } else {
+            a.parent.left = b;
+        }
+        b.right = a;
+        a.parent = b;
+
+        return b;
     }
 
     //added underscores because needed
     public Position<T> doubleLeftRight(Position<T> _a, Position<T> _b, Position<T> _c) {
-        Node<T> z = toNode(_c);
-        Node<T> y = toNode(_b);
-        Node<T> x = toNode(_a);
+        Node<T> c = toNode(_c);
+        Node<T> b = toNode(_b);
+        Node<T> a = toNode(_a);
 
-//        New new Implementation
+        //simple Implementation - in terms of input and output, it's correct
+        b.right = c;
+        b.left = a;
+        a.parent = b;
+        c.parent = b;
+        b.parent = null;
+        a.right = null;
+        c.left = null;
+        this.root = b;
 
-//        Previous Implementation
-//        b.right = c;
-//        b.left = a;
-//        a.parent = b;
-//        c.parent = b;
-//        b.parent = null;
-//        a.right = null;
-//        c.left = null;
-//        this.root = b;
-
-        return y;
+        return b;
     }
 
     public Position<T> doubleRightLeft(Position<T> _a, Position<T> _b, Position<T> _c) {
-        Node<T> z = toNode(_c);
-        Node<T> y = toNode(_b);
-        Node<T> x = toNode(_a);
+        Node<T> c = toNode(_c);
+        Node<T> b = toNode(_b);
+        Node<T> a = toNode(_a);
 
-//        New new Implementation
+        //simple Implementation - in terms of input and output, it's correct
+        b.parent = null;
+        a.right = null;
+        c.left = null;
+        a.parent = b;
+        c.parent = b;
+        b.right = c;
+        b.left = a;
+        this.root = b;
 
-//        Previous Implementation
-//        b.parent = null;
-//        a.right = null;
-//        c.left = null;
-//        a.parent = b;
-//        c.parent = b;
-//        b.right = c;
-//        b.left = a;
-//        this.root = b;
-
-        return y;
+        return b;
     }
 }
